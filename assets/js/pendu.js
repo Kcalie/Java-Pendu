@@ -39,7 +39,7 @@ function Aleatoire(mini,maxi) {
 function Initialise() {
     motcache = listemot[Aleatoire(0,listemot.length)];
     table = new Array(motcache.length);
-    affiche = new Array(motcache.length)
+    affiche = new Array(motcache.length);
     played = 0;
     nbplayed = 0;
     for(var x = 0; x < motcache.length; x++){
@@ -53,5 +53,109 @@ function Initialise() {
     for(var x=0; x <=nbplayed;x++){
         playedchar[x] = "";
     }
+    document.pendu.motcache.value = out;
+    document.pendu.caracteres.value = "";
+    document.pendu.caracterejoue.value ="";
+    document.pendu.caracteres.focus();
 }
+function Continue() {
+    if(played == 5) {
+        alert('vous avez perdu');
+        out = "";
+        for(var x = 0; x < motcache.length; x++){
+            out = out + table[x];
+        }
+        document.pendu.motcache.value = out;
+    }
+    else {
+        if(table.join() == affiche.join()){
+            alert('vous avez gagné');
+        }
+    }
+}
+function OKToPlay(carac) {
+    if(played == 5) {
+        return 1;
+    }
+    else {
+        if(table.join() == affiche.join()) {
+            return 2;
+        }
+        else {
+            if(carac="") {
+                return 3;
+            }
+            else {
+                let exist = false;
+                for(var x=0; x < nbplayed; x++) {
+                    if(playedchar[x] == carac) {
+                        exist = true;
+                    }
+                }
+                if(exist) {
+                    return 4;
+                }
+            }
+        }
+    }
+    return 0;
+}
+function TestCar() {
+    let good = false;
+    propose = document.pendu.caracteres.value;
+    propose = propose.toLowerCase();
+    let test = OKToPlay(propose);
+    if(test == 0) {
+        playedchar[nbplayed] = propose;
+        for(var x=0; x < motcache.length; x++) {
+            if(propose == table[x]) {
+                affiche[x] = propose;
+                good = true;
+            }
+        }
+        if(good) {
+            out = "";
+            for(var x =0; x < motcache.length; x++) {
+                out = out + affiche[x];
+            }
+            document.pendu.motcache.value = out;
+        }
+        else {
+            document.getElementsByClassName('partie').innerHTML = '<img src="assets/img/'+pieces[played]+'" />';
+            played++;
+        }
+        out="";
+        for(var x = 0; x <= nbplayed; x++) {
+            out = out + playedchar[x];
+        }
+        nbplayed++;
+        document.pendu.caracterejoue.value = out;
+        document.pendu.caracteres.value = "";
+
+
+        Continue();
+    }
+    else {
+        if(test == 1) {
+            alert('vous avez perdu')
+            document.pendu.caracteres.value = "";
+        }
+        if(test == 2) {
+            alert('vous avez gagné')
+            document.pendu.caracteres.value="";
+        }
+        if(test == 3) {
+            alert('saisir un caractere')
+            document.pendu.caracteres.value="";
+        }
+        if(test == 4) {
+            alert('cara deja proposé')
+            document.pendu.caracteres.value="";
+        }
+    }
+    document.pendu.caracteres.focus();
+}
+Initialise();
+
+
 
