@@ -121,7 +121,7 @@ function TestCar() {
             document.pendu.motcache.value = out;
         }
         else {
-            document.getElementsByClassName('partie').innerHTML = '<img src="assets/img/'+pieces[played]+'" />';
+            document.getElementById('partie').innerHTML = '<img src="assets/img/'+pieces[played]+'" />';
             played++;
         }
         out="";
