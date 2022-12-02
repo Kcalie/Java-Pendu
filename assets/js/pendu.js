@@ -7,11 +7,11 @@ let pieces = new Array(5);
 let table = new Array(motcache.length);
 let affiche = new Array(motcache.length);
 // definissions des images pendu
-pieces[0] = 'pendu1.png';
-pieces[1] = 'pendu2.png';
-pieces[2] = 'pendu3.png';
-pieces[3] = 'pendu4.png';
-pieces[4] = 'pendu5.png';
+pieces[0] = 'Pendu1.png';
+pieces[1] = 'Pendu2.png';
+pieces[2] = 'Pendu3.png';
+pieces[3] = 'Pendu4.png';
+pieces[4] = 'Pendu5.png';
 listemot[0] = 'salle';
 listemot[1] = 'cours';
 listemot[2] = 'begayer';
